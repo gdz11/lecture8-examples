@@ -1,0 +1,34 @@
+{
+  "students": [
+    {
+      "id": "96d8c16b-5033-431d-a928-497f128586d8",
+      "name": "გიორგი",
+      "personalNumber": "123"
+    },
+    {
+      "id": "00d397fe-92ca-49fb-8fc9-6ad9b2b509d9",
+      "name": "გიო",
+      "personalNumber": "1234"
+    },
+    {
+      "id": "7e76411f-29fe-4eb1-8920-56be515e940e",
+      "name": "გია2",
+      "personalNumber": "1234"
+    },
+    {
+      "id": "ce67ce63-14a7-439d-9012-ff3bf9211e8c",
+      "name": "გიგი",
+      "personalNumber": "1234"
+    },
+    {
+      "id": "11c55af8-0e3c-4bcc-a479-ac00f84eca02",
+      "name": "მიხეილი",
+      "personalNumber": "22324"
+    },
+    {
+      "id": "0696722b-3d6b-41dc-a6c7-3abbc65b3079",
+      "name": "test",
+      "personalNumber": "123123213"
+    }
+  ]
+}

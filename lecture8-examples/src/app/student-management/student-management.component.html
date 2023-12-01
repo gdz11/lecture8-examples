@@ -1,0 +1,42 @@
+<h2>Add student</h2>
+<form [formGroup]="addForm" (ngSubmit)="addStudent()">
+    <input formControlName="name" placeholder="name" />
+    <input formControlName="personalNumber" placeholder="personalNumber" />
+    <button [disabled]="!addForm.valid" type="submit">save</button>
+</form>
+
+<h2>students</h2>
+<div class="table">
+    <form [formGroup]="editForm">
+        <div *ngFor="let student of students" class="row" [ngClass]="{selected: editingStudent?.id == student.id}">
+            <div class="cell">
+                <span *ngIf="editingStudent?.id != student.id"> {{ student.name }} </span>
+                <input *ngIf="editingStudent?.id == student.id" formControlName="name" placeholder="name" />
+            </div>
+            <div class="cell">
+                <span *ngIf="editingStudent?.id != student.id"> {{ student.personalNumber }} </span>
+                <input *ngIf="editingStudent?.id == student.id" formControlName="personalNumber"
+                    placeholder="personalNumber" />
+            </div>
+            <div class="cell">
+                <button (click)="editStudent(student)" *ngIf="editingStudent?.id != student.id">edit</button>
+                <button *ngIf="editingStudent?.id == student.id" [disabled]="!editForm.valid"
+                    (click)="updateStudent()">save</button>
+            </div>
+            <div class="cell" >
+                <button *ngIf="editingStudent?.id != student.id" (click)="deleteStudent(student.id)">delete</button>
+                <button *ngIf="editingStudent?.id == student.id" (click)="cancelEditStudent()" >cancel</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<h2>Quick search</h2>
+
+<input [formControl]="searchField" placeholder="search studen" />
+<br />
+
+<div *ngFor="let student of searchResults$ | async">
+{{ student.name }} {{ student.personalNumber}}
+</div>
