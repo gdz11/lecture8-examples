@@ -1,16 +1,19 @@
-import { BehaviorSubject, Observable } from 'rxjs';
-import { debounceTime, switchMap } from 'rxjs/operators'
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
 import { Student } from '../shared/models/student.model';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StudentService } from '../shared/services/student.service';
+import { AsyncPipe, NgClass } from '@angular/common';
+import { BehaviorSubject, debounceTime, Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-student-management',
+  standalone: true,
+  imports: [ReactiveFormsModule, NgClass, AsyncPipe],
   templateUrl: './student-management.component.html',
-  styleUrls: ['./student-management.component.scss']
+  styleUrl: './student-management.component.scss'
 })
-export class StudentManagementComponent implements OnInit {
+export class StudentManagementComponent {
+
   public students: Student[] = [];
 
   public editingStudent?: Student; 

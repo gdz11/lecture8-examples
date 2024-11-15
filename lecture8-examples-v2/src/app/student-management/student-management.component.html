@@ -1,0 +1,62 @@
+<h2>Add student</h2>
+<form [formGroup]="addForm" (ngSubmit)="addStudent()">
+    <input formControlName="name" placeholder="name" />
+    <input formControlName="personalNumber" placeholder="personalNumber" />
+    <button [disabled]="!addForm.valid" type="submit">save</button>
+</form>
+
+<h2>students</h2>
+<div class="table">
+    <form [formGroup]="editForm">
+        @for(student of students; track student.id){
+            <div class="row" [ngClass]="{selected: editingStudent?.id == student.id}">
+                <div class="cell">
+                    @if(editingStudent?.id != student.id){
+                        <span> {{ student.name }} </span>
+                    }
+                    @else {
+                        <input formControlName="name" placeholder="name" />
+                    }
+                </div>
+                <div class="cell">
+                    @if(editingStudent?.id != student.id){
+                        <span> {{ student.personalNumber }} </span>
+                    }
+                    @else{
+                        <input formControlName="personalNumber"
+                        placeholder="personalNumber" />
+                    }
+                </div>
+                <div class="cell">
+                    @if(editingStudent?.id != student.id){
+                        <button (click)="editStudent(student)" >edit</button>
+                    }
+                    @else{
+                        <button [disabled]="!editForm.valid"
+                            (click)="updateStudent()">save</button>
+                    }
+                </div>
+                <div class="cell" >
+                    @if(editingStudent?.id != student.id){
+                    <button (click)="deleteStudent(student.id)">delete</button>
+                    }
+                    @else {
+                        <button (click)="cancelEditStudent()" >cancel</button>
+                    }
+                </div>
+
+            </div>
+        }
+    </form>
+</div>
+
+<h2>Quick search</h2>
+
+<input [formControl]="searchField" placeholder="search studen" />
+<br />
+
+@for(student of searchResults$ | async; track student.id){
+    <div>
+    {{ student.name }} {{ student.personalNumber}}
+    </div>
+}
